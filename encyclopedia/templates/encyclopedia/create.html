@@ -1,0 +1,34 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+
+    Create
+
+{% endblock %}
+
+{% block body %}
+
+    <h3>Create a new entry:</h3>
+    <form action="{% url 'create' %}" method="post">
+        {% csrf_token %}
+        {% if message %}
+            <div>{{ message }}</div>
+        {% endif %}
+        <div class="label">
+            <label>Title: </label>
+            {{ form.title }}
+            {% if no_title %}
+                <span>{{ no_title }}</span>
+            {% endif %}
+        </div>
+        <div>
+            {{ form.content }}
+        </div>
+        <br><input type="submit" value="Create">
+    </form>
+
+    <style>
+        .label {margin-bottom: 10px;}
+    </style>
+
+{% endblock %}
